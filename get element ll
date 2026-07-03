@@ -1,0 +1,49 @@
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+public class Main {
+
+    // Get Element
+    static int getElement(Node head, int index) {
+
+        Node temp = head;
+        int count = 0;
+
+        while (temp != null) {
+
+            if (count == index) {
+                return temp.data;
+            }
+
+            count++;
+            temp = temp.next;
+        }
+
+        return -1;   // Invalid Index
+    }
+
+    public static void main(String[] args) {
+
+        Node a = new Node(10);
+        Node b = new Node(20);
+        Node c = new Node(30);
+        Node d = new Node(40);
+
+        a.next = b;
+        b.next = c;
+        c.next = d;
+
+        Node head = a;
+
+        System.out.println(getElement(head, 0));
+        System.out.println(getElement(head, 2));
+        System.out.println(getElement(head, 3));
+    }
+}
