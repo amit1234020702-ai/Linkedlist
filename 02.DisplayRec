@@ -1,0 +1,39 @@
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+public class Main {
+
+    // Recursive Display
+    static void displayLinkedList(Node head) {
+
+        if (head == null) {
+            return;
+        }
+
+        System.out.print(head.data + " ");
+        displayLinkedList(head.next);
+    }
+
+    public static void main(String[] args) {
+
+        Node a = new Node(10);
+        Node b = new Node(20);
+        Node c = new Node(30);
+        Node d = new Node(40);
+
+        a.next = b;
+        b.next = c;
+        c.next = d;
+
+        Node head = a;
+
+        displayLinkedList(head);
+    }
+}
