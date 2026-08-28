@@ -1,0 +1,800 @@
+
+### 🟢 Level 1: Basics — pehle ye karo
+
+//////////////////////////////////////////////////////////////
+
+1. **Create a Singly Linked List**
+class Node {
+    int data;
+    Node next;
+
+    Node(int x) {
+        data = x;
+        next = null;
+    }
+}
+
+class Solution {
+    public Node createList(int[] arr) {
+
+        Node head = new Node(arr[0]);
+        Node current = head;
+
+        for (int i = 1; i < arr.length; i++) {
+            current.next = new Node(arr[i]);
+            current = current.next;
+        }
+
+        return head;
+    }
+}
+////////////////////////////////////////////////////////////////////
+
+2. **Traverse / Print Linked List**
+public void printList(Node head) {
+
+    Node current = head;
+
+    while (current != null) {
+        System.out.print(current.data + " ");
+        current = current.next;
+    }
+}
+
+///////////////////////////////////////////////////////////////////
+
+3. **Count Number of Nodes**
+class Solution {
+    public int countNodes(Node head) {
+
+        int count = 0;
+        Node current = head;
+
+        while (current != null) {
+            count++;
+            current = current.next;
+        }
+
+        return count;
+    }
+}
+
+///////////////////////////////////////////////////////////////
+
+4. **Search an Element**
+class Solution {
+    public boolean search(Node head, int target) {
+
+        Node current = head;
+
+        while (current != null) {
+
+            if (current.data == target) {
+                return true;
+            }
+
+            current = current.next;
+        }
+
+        return false;
+    }
+}
+
+///////////////////////////////////////////////////////////////////////
+
+5. **Find Sum of Nodes**
+class Solution {
+    public int findSum(Node head) {
+
+        int sum = 0;
+        Node current = head;
+
+        while (current != null) {
+
+            sum += current.data;
+
+            current = current.next;
+        }
+
+        return sum;
+    }
+}
+
+///////////////////////////////////////////////////////////////////
+
+
+6. **Find Maximum Element**
+class Solution {
+    public int findMax(Node head) {
+
+        int max = head.data;
+        Node current = head.next;
+
+        while (current != null) {
+
+            if (current.data > max) {
+                max = current.data;
+            }
+
+            current = current.next;
+        }
+
+        return max;
+    }
+}
+
+///////////////////////////////////////////////////////////////////////
+
+7. **Find Minimum Element**
+class Solution {
+    public int findMin(Node head) {
+
+        int min = head.data;
+        Node current = head.next;
+
+        while (current != null) {
+
+            if (current.data < min) {
+                min = current.data;
+            }
+
+            current = current.next;
+        }
+
+        return min;
+    }
+}
+
+////////////////////////////////////////////////////////////////////////
+
+### 🟢 Level 2: Insertion
+
+///////////////////////////////////////////////////////////////////////////
+
+8. **Insert at Head** ⭐
+class Solution {
+    public Node insertAtHead(Node head, int val) {
+
+        Node newNode = new Node(val);
+
+        newNode.next = head;
+       ///head=newNode;
+        return newNode;
+    }
+}
+
+///////////////////////////////////////////////////////////////////
+
+
+9. **Insert at Tail** ⭐
+class Solution {
+    public Node insertAtTail(Node head, int val) {
+
+        Node newNode = new Node(val);
+
+        // If list is empty
+        if (head == null) {
+            return newNode;
+        }
+
+        Node current = head;
+
+        // Go to the last node
+        while (current.next != null) {
+            current = current.next;
+        }
+
+        // Connect last node to new node
+        current.next = newNode;
+
+        return head;
+    }
+}
+//////////////////////////////////////////////////////////////////
+
+10. **Insert at Given Position** ⭐
+class Solution {
+    public Node insertBefore(Node head, int target, int val) {
+
+        Node newNode = new Node(val);
+
+        // Target is at head
+        if (head.data == target) {
+            newNode.next = head;
+            return newNode;
+        }
+
+        Node current = head;
+
+        // Find node just before target
+        while (current.next != null &&
+               current.next.data != target) {
+
+            current = current.next;
+        }
+
+        // Target found
+        if (current.next != null) {
+            newNode.next = current.next;
+            current.next = newNode;
+        }
+
+        return head;
+    }
+}
+
+////////////////////////////////////////////////////////////////////
+
+    → Tumne abhi ye kiya hai.
+11. **Insert Before a Given Node**
+
+////////////////////////////////////////////////////////////////////
+12. **Insert After a Given Node**
+class Solution {
+    public Node insertAfter(Node head, int target, int val) {
+
+        Node current = head;
+
+        // Find target node
+        while (current != null && current.data != target) {
+            current = current.next;
+        }
+
+        // Target found
+        if (current != null) {
+            Node newNode = new Node(val);
+
+            newNode.next = current.next;
+            current.next = newNode;
+        }
+
+        return head;
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////
+### 🟢 Level 3: Deletion
+
+
+13. **Delete Head** ⭐
+
+
+/////////////////////////////////////////////////////////////////////////
+    → Abhi tumne ye poocha.
+14. **Delete Tail** ⭐
+class Solution {
+    public Node deleteTail(Node head) {
+
+        // Empty list
+        if (head == null) {
+            return null;
+        }
+
+        // Only one node
+        if (head.next == null) {
+            return null;
+        }
+
+        Node current = head;
+
+        // Reach second-last node
+        while (current.next.next != null) {
+            current = current.next;
+        }
+
+        // Remove last node
+        current.next = null;
+
+        return head;
+    }
+}
+
+
+///////////////////////////////////////////////////////////////////
+
+15. **Delete Node at Given Position** ⭐
+class Solution {
+    public Node deleteAtPosition(Node head, int pos) {
+
+        // Empty list
+        if (head == null) {
+            return null;
+        }
+
+        // Delete head
+        if (pos == 1) {
+            return head.next;
+        }
+
+        Node current = head;
+
+        // Reach node just before the position
+        for (int i = 1; i < pos - 1; i++) {
+            current = current.next;
+        }
+
+        // Delete the node
+        current.next = current.next.next;
+
+        return head;
+    }
+}
+
+////////////////////////////////////////////////////////////////////
+
+16. **Delete Node by Value**
+class Solution {
+    public Node deleteByValue(Node head, int value) {
+
+        // Empty list
+        if (head == null) {
+            return null;
+        }
+
+        // If head contains the value
+        if (head.data == value) {
+            return head.next;
+        }
+
+        Node current = head;
+
+        // Find node just before the target node
+        while (current.next != null &&
+               current.next.data != value) {
+
+            current = current.next;
+        }
+
+        // Delete target node
+        if (current.next != null) {
+            current.next = current.next.next;
+        }
+
+        return head;
+    }
+}
+/////////////////////////////////////////////////////////////////////
+
+17. **Delete All Occurrences of a Value 
+class Solution {
+    public Node deleteAll(Node head, int value) {
+
+        // Delete all matching nodes from the beginning
+        while (head != null && head.data == value) {
+            head = head.next;
+        }
+
+        Node current = head;
+
+        // Delete matching nodes from remaining list
+        while (current != null && current.next != null) {
+
+            if (current.next.data == value) {
+                current.next = current.next.next;
+            } else {
+                current = current.next;
+            }
+        }
+
+        return head;
+    }
+}
+////////////////////////////////////////////////////
+
+### 🟡 Level 4: Important Problems
+
+18. **Reverse a Linked List** ⭐⭐⭐
+class Solution {
+    public Node reverseList(Node head) {
+
+        Node prev = null;
+        Node current = head;
+
+        while (current != null) {
+
+            Node next = current.next;
+
+            current.next = prev;
+
+            prev = current;
+            current = next;
+        }
+
+        return prev;
+    }
+}
+///////////////////////////////////////////////////////////////////
+19. **Find Middle of Linked List** ⭐⭐
+
+       S
+10->20->30->40->50
+                F
+class Solution {
+    public Node findMiddle(Node head) {
+
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null) {
+
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return slow;
+    }
+}
+//////////////////////////////////////////////////////////////////
+
+20. **Find Nth Node from End** ⭐⭐
+class Solution {
+    public Node getNthFromEnd(Node head, int n) {
+
+        Node fast = head;
+        Node slow = head;
+
+        for (int i = 0; i < n; i++) {
+            if (fast == null) {
+                return null;
+            }
+            fast = fast.next;
+        }
+
+        while (fast != null) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+
+        return slow;
+    }
+}
+///////////////////////////////////////////////////////
+21. **Find Length of Linked List**
+class Solution {
+    public Node getNthFromEnd(Node head, int n) {
+
+        Node fast = head;
+        Node slow = head;
+
+        for (int i = 0; i < n; i++) {
+            if (fast == null) {
+                return null;
+            }
+            fast = fast.next;
+        }
+
+        while (fast != null) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+
+        return slow;
+    }
+}
+/////////////////////////////////////////////////////
+22. **Check Palindrome Linked List** ⭐⭐
+O(n) Time 
+O(1) Space
+##step
+1.Middle find karo
+2.Second half reverse karo
+3.Dono halves compare karo
+
+class Solution {
+    public boolean isPalindrome(Node head) {
+
+        // Empty list or single node
+        if (head == null || head.next == null) {
+            return true;
+        }
+
+        // Step 1: Find middle
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        // Step 2: Reverse second half
+        Node prev = null;
+        Node current = slow;
+
+        while (current != null) {
+            Node next = current.next;
+
+            current.next = prev;
+
+            prev = current;
+            current = next;
+        }
+
+        // Step 3: Compare both halves
+        Node first = head;
+        Node second = prev;
+
+        while (second != null) {
+
+            if (first.data != second.data) {
+                return false;
+            }
+
+            first = first.next;
+            second = second.next;
+        }
+
+        return true;
+    }
+}
+
+//////////////////////////////////////////////////////
+23. **Remove Duplicates from Sorted Linked List
+1 → 1 → 2 → 3 → 3 → 4 → 4 → null
+1 → 2 → 3 → 4 → null
+
+class Solution {
+    public Node removeDuplicates(Node head) {
+
+        Node current = head;
+
+        while (current != null && current.next != null) {
+
+            if (current.data == current.next.data) {
+                current.next = current.next.next;
+            } else {
+                current = current.next;
+            }
+        }
+
+        return head;
+    }
+}
+Time: O(n) ✅
+Space: O(1) ✅
+
+/////////////////////////////////////////////////////////
+
+24. **Remove Duplicates from Unsorted Linked List**
+
+10 → 20 → 10 → 30 → 20 → 40 → null
+10 → 20 → 30 → 40 → null
+
+import java.util.HashSet;
+
+class Solution {
+    public Node removeDuplicates(Node head) {
+
+        if (head == null) {
+            return null;
+        }
+
+        HashSet<Integer> set = new HashSet<>();
+
+        Node current = head;
+        Node prev = null;
+
+        while (current != null) {
+
+            if (set.contains(current.data)) {
+                // Duplicate node delete
+                prev.next = current.next;
+            } else {
+                // First occurrence
+                set.add(current.data);
+                prev = current;
+            }
+
+            current = current.next;
+        }
+
+        return head;
+    }
+}
+///////////////////////////////////////////////////////////////
+Q24. Find First Repeating Element in Linked List
+import java.util.HashSet;
+
+class Solution {
+    public int firstRepeating(Node head) {
+
+        HashSet<Integer> set = new HashSet<>();
+
+        Node current = head;
+
+        while (current != null) {
+
+            if (set.contains(current.data)) {
+                return current.data;
+            }
+
+            set.add(current.data);
+            current = current.next;
+        }
+
+        return -1; // No repeating element
+    }
+}
+////////////////////////////////////////////////////////////////
+### 🟡 Level 5: Cycle
+
+25. **Linked List Cycle** ⭐⭐⭐
+1 → 2 → 3 → 4 → 5
+        ↑       ↓
+        └───────┘
+public class Solution {
+    public boolean hasCycle(Node head) {
+
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null) {
+
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
+Time: O(n)
+Space: O(1)
+
+/////////////////////////////////////////////////////////////////////
+
+26. **Cycle Length in Linked List** ⭐⭐⭐
+1 → 2 → 3 → 4 → 5
+        ↑       ↓
+        └───────┘
+o/p=3
+class Solution {
+    public int countNodesinLoop(Node head) {
+
+        Node slow = head;
+        Node fast = head;
+
+        // Step 1: Detect cycle
+        while (fast != null && fast.next != null) {
+
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast) {
+
+                // Step 2: Count cycle length
+                int count = 1;
+                Node temp = slow.next;
+
+                while (temp != slow) {
+                    count++;
+                    temp = temp.next;
+                }
+
+                return count;
+            }
+        }
+
+        return 0;
+    }
+}
+//////////////////////////////////////////////////////////////
+27. **Find Starting Point of Cycle** ⭐⭐⭐
+1 → 2 → 3 → 4 → 5
+        ↑       ↓
+        └───────┘
+Node 3
+class Solution {
+    public Node findCycleStart(Node head) {
+
+        Node slow = head;
+        Node fast = head;
+
+        // Step 1: Detect cycle
+        while (fast != null && fast.next != null) {
+
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast) {
+
+                // Step 2: Find starting point
+                slow = head;
+
+                while (slow != fast) {
+                    slow = slow.next;
+                    fast = fast.next;
+                }
+
+                return slow;
+            }
+        }
+
+        return null;
+    }
+}
+Time: O(n) ✅
+Space: O(1) ✅
+
+///////////////////////////////////////////////////////////
+
+28. **Remove Loop from Linked List** ⭐⭐⭐
+1 → 2 → 3 → 4 → 5
+        ↑       ↓
+        └───────┘
+1 → 2 → 3 → 4 → 5 → null
+class Solution {
+
+    public static void removeLoop(Node head) {
+
+        Node slow = head;
+        Node fast = head;
+
+        // Step 1: Detect loop
+        while (fast != null && fast.next != null) {
+
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast) {
+                break;
+            }
+        }
+
+        // No loop
+        if (slow != fast) {
+            return;
+        }
+
+        // Step 2: Find starting point of loop
+        slow = head;
+
+        while (slow != fast) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+
+        // Step 3: Find last node of loop
+        while (fast.next != slow) {
+            fast = fast.next;
+        }
+
+        // Step 4: Remove loop
+        fast.next = null;
+    }
+}
+### 🟠 Level 6: Two Linked Lists
+
+29. **Intersection Point of Two Linked Lists** ⭐⭐⭐
+30. **Merge Two Sorted Linked Lists** ⭐⭐⭐
+31. **Add Two Numbers Represented by Linked Lists**
+32. **Find Union of Two Linked Lists**
+
+### 🔴 Level 7: Advanced
+
+33. **Reverse Linked List in Groups of K** ⭐⭐⭐
+34. **Rotate Linked List**
+35. **Sort a Linked List**
+36. **Merge Sort on Linked List**
+37. **Flatten a Linked List**
+38. **Clone Linked List with Random Pointer**
+
+---
+
+## 🎯 Tum abhi yahan ho
+
+Tumne already kiya:
+
+✅ Linked List Cycle
+✅ Cycle Length
+✅ Insert in Singly Linked List
+✅ Delete Head
+
+Ab **next question:**
+
+### 👉 Delete Tail
+
