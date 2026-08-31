@@ -9,7 +9,7 @@ class Node {
     }
 }*/
 
-class Solution {
+class Solution {            ////////yt lin==https://www.youtube.com/watch?v=wa4fTaf3qSw
     public Node sortedInsert(Node head1, int key) {
         Node newNode=new Node(key);
         Node prev=null;
