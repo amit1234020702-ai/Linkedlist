@@ -1,0 +1,23 @@
+class Solution {
+    public Node reverseDLL(Node head) {
+
+        Node temp = head;
+        Node newHead = null;
+
+        while (temp != null) {
+
+            // Swap next and prev
+            Node currentNext = temp.next;
+            temp.next = temp.prev;
+            temp.prev = currentNext;
+
+            // This node can become new head
+            newHead = temp;
+
+            // Move to original next node
+            temp = currentNext;
+        }
+
+        return newHead;
+    }
+}
