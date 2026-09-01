@@ -1,0 +1,41 @@
+Input: head = 1 -> 2 -> 3 -> 4 -> 5
+Output: 2 -> 1 -> 4 -> 3 -> 5
+
+Input: head = 8 -> 7 -> 5 -> 2 -> 1
+Output: 7 -> 8 -> 2 -> 5 -> 1
+
+/////////////////////////////////////////
+class Solution {
+    public Node pairwiseSwap(Node head) {
+
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        Node prev = null;
+        Node curr = head;
+
+        while (curr != null && curr.next != null) {
+
+            Node nextPair = curr.next.next;
+            Node second = curr.next;
+
+            // Swap current and second node
+            second.next = curr;
+            curr.next = nextPair;
+
+            // Connect previous pair with current pair
+            if (prev == null) {
+                head = second;
+            } else {
+                prev.next = second;
+            }
+
+            // Move to next pair
+            prev = curr;
+            curr = nextPair;
+        }
+
+        return head;
+    }
+}
