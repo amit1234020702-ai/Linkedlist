@@ -1,0 +1,44 @@
+
+
+
+/* Structure of Linked List Node
+class Node {
+    int data;
+    Node next;
+    Node(int val) {
+        data = val;
+        next = null;
+    }
+} */
+class Solution {
+    public static void removeLoop(Node head) {
+        if(head==null || head.next==null){
+            return;
+        }
+        Node hare=head;
+        Node turtle=head;
+        while(hare!=null && hare.next!=null){
+            hare=hare.next.next;
+            turtle=turtle.next;
+            if(hare==turtle){
+                break;
+            }
+        }
+       if(hare==turtle){
+           turtle=head;
+           if(hare!=turtle){
+               while(hare.next!=turtle.next){
+                   hare=hare.next;
+                   turtle=turtle.next;
+               }
+             hare.next=null;
+           }
+           else{
+               while(hare.next!=turtle){
+                   hare=hare.next;
+               }
+               hare.next=null;
+           }
+       } 
+    }
+}
