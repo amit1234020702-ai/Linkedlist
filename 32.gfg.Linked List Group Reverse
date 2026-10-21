@@ -1,0 +1,40 @@
+/* Structure of linked list Node
+class Node
+{
+    int data;
+    Node next;
+    Node(int key)
+    {
+        data = key;
+        next = null;
+    }
+}*/
+
+class Solution {
+    public Node reverseKGroup(Node head, int k) {
+            Node curr = head;
+            Node prevGroupEnd = null;
+            Node newHead = null;
+            while (curr != null) {
+                Node groupStart = curr;
+                Node prev = null;
+                int count = 0;
+                while (curr != null && count < k) {
+                    Node next = curr.next;
+                    curr.next = prev;
+                    prev = curr;
+                    curr = next;
+                    count++;
+                }
+                if (newHead == null) {
+                    newHead = prev;
+                }
+                if (prevGroupEnd != null) {
+                    prevGroupEnd.next = prev;
+                }
+                prevGroupEnd = groupStart;
+            }
+
+            return newHead;
+    }
+}
