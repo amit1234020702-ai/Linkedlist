@@ -1,0 +1,56 @@
+/* Definition of a Linked List Node
+class Node {
+    int data;
+    Node next;
+
+    Node(int val) {
+        data = val;
+        next = null;
+    }
+}*/
+Input: list[] = [25, 36, 47, 58, 69, 80], key = 19
+
+Output: [19, 25, 36, 47, 58, 69, 80]
+
+Explanation: After inserting 19 the sorted linked list will look like the one in the output.
+class Solution {
+    public Node sortedInsert(Node head, int key) {
+        // Node newNode=new Node(key);
+        // if(head==null || key<=head.data){
+        //     newNode.next=head;
+        //     return newNode;
+        // }
+        // Node current=head;
+        // while(current.next !=null && current.next.data<key){
+        //     current=current.next;
+        // }
+        // newNode.next=current.next;
+        //     current.next=newNode;
+        //     return head;
+        
+        Node newNode=new Node(key);
+        Node prev=null;
+        Node temp=head;
+        while(temp!=null){
+            if(temp.data>=key){
+                break;
+            }
+            else{
+                prev=temp;
+                temp=temp.next;
+            }
+        }
+            if(prev==null){
+                newNode.next=head;
+                head=newNode;
+            }
+            else{
+                newNode.next=prev.next;
+                prev.next=newNode;
+            }
+            return head;
+        }
+        
+        
+    
+}
